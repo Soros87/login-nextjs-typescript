@@ -6,7 +6,7 @@ const Header = () => {
     <header className="z-[999] relative flex justify-between items-center">
       <div className="flex flex-row fixed top-0 left-0 right-0 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem]">
         <div className="fixed top-0 right-10 h-[4.5rem] flex items-center gap-5">
-          Welcome Tim
+          <span>Welcome</span>
           <Image
             src="/userprofile.png"
             alt=""

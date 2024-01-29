@@ -25,7 +25,7 @@ const LoginPage = () => {
               Login
             </button>
             <div className="mt-5 mb-5 text-sm text-center">
-              Or Sign up using
+              Or Sign in using
             </div>{" "}
             <button className="flex gap-4 p-4 ring-2 ring-orange-100 rounded-md justify-center items-center">
               <Image
