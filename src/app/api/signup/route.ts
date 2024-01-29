@@ -21,19 +21,19 @@ export async function POST(req: { json: () => Promise<RequestBody> }) {
     );
   }
 
-  //Check if the user already exist
-  const userExist = await User.findOne({ email });
-  if (userExist)
-    return NextResponse.json(
-      { message: "Email address already exists" },
-      { status: 400 }
-    );
-
-  //hashPassword uses a salt (random data input) to hash the password - see utils
-  const hashedPassword = await hashString(password);
-
   try {
     await connectMongoDB();
+
+    //Check if the user already exist
+    const userExist = await User.findOne({ email });
+    if (userExist)
+      return NextResponse.json(
+        { message: "Email address already exists" },
+        { status: 400 }
+      );
+
+    //hashPassword uses a salt (random data input) to hash the password - see utils
+    const hashedPassword = await hashString(password);
     await User.create({
       firstName: firstName,
       lastName: lastName,
@@ -41,7 +41,10 @@ export async function POST(req: { json: () => Promise<RequestBody> }) {
       password: hashedPassword,
     });
 
-    return NextResponse.json({ message: "User registered." }, { status: 201 });
+    return NextResponse.json(
+      { message: "User successfully registered." },
+      { status: 201 }
+    );
   } catch (error) {
     return NextResponse.json(
       { message: "An error occured while registering the user" },
