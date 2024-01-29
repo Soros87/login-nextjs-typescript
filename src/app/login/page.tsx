@@ -23,7 +23,6 @@ const LoginPage = () => {
     // Your form handling logic here
 
     // Define a custom type for the response of the signIn function
-
     try {
       const res = (await signIn("credentials", {
         email,
@@ -44,9 +43,9 @@ const LoginPage = () => {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="flex items-center justify-center h-auto bg-white rounded-lg">
+      <div className="flex items-center justify-center h-auto bg-white rounded-lg sm:w-[30%]">
         <div className="min-w-md w-full shadow-lg p-5 rounded-lg border-t-4 border-green-400">
-          <h1 className="text-xl font-bold my-4 text-center">Login</h1>
+          <h1 className="text-3xl font-bold my-4 text-center">Login</h1>
 
           <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
             <input
