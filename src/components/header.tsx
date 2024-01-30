@@ -15,7 +15,9 @@ const Header = () => {
             <>
               <div className="pl-3 flex w-10">
                 <span className="text-sm">
-                  Welcome {session?.user?.email?.split("@")[0]}
+                  Welcome{" "}
+                  {session?.user?.name?.split(" ")[0] ||
+                    session?.user?.email?.split("@")[0]}
                 </span>
               </div>
               <div className="ml-9">

@@ -37,12 +37,29 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 Objective: Build a login page using NextJS and Typescript. Implement Google Facebook SSO login authentication.
 
-1. OAuth authentication
+1. OAuth authentication - Google and Facebook
 2. Custom Credentials-based login (Email + Password): - Cookie based authentication
 
-Database - MongoDB
+Database
 
-Key Dependencies
-next-auth
-mongoose - for NoSQLDB
-bycrpytjs - for custom authentication
+1. MongoDB
+
+.env file
+MONGODB_CONNECTION_URL =
+
+MONGODB_USERNAME =
+MONGODB_PASSWORD =
+
+NEXTAUTH_SECRET =
+NEXTAUTH_URL=
+
+FACEBOOK_APP_SECRET =
+FACEBOOK_APP_ID =
+
+GOOGLE_ID =
+GOOGLE_SECRET =
+
+TO FIX
+
+1. Facebook login requires HTTPS at localhost. Need to reconfigure next js localhost with https.
+2. Google login does not route the user to the home page ("/") after successful login.

@@ -1,10 +1,12 @@
 import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
 import { connectMongoDB } from "@/lib/mongodb";
 import { NextApiHandler } from "next";
+import FacebookProvider from "next-auth/providers/facebook";
 
 interface Credentials {
   email: string;
@@ -45,6 +47,16 @@ const authOptions: NextAuthOptions = {
         }
       },
     }),
+    GoogleProvider({
+      // clientId: process.env.GOOGLE_ID as string,
+      // clientSecret: process.env.GOOGLE_SECRET as string,
+      clientId: process.env.GOOGLE_ID!,
+      clientSecret: process.env.GOOGLE_SECRET!,
+    }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_APP_ID!,
+      clientSecret: process.env.FACEBOOK_APP_SECRET!,
+    }),
   ],
   session: {
     strategy: "jwt",
@@ -52,6 +64,25 @@ const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/",
+  },
+  callbacks: {
+    async session({ token, session }) {
+      // Fetch user information from the database and add it to the session
+      try {
+        if (session.user && session.user.email) {
+          await connectMongoDB();
+          const user = await User.findOne({ email: session.user.email });
+
+          if (!user) {
+            throw new Error("User not found in the database.");
+          }
+        }
+        return session;
+      } catch (error) {
+        console.error("Error during session callback:", error);
+        throw new Error("An error occurred during session callback");
+      }
+    },
   },
 };
 

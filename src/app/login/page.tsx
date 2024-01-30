@@ -19,6 +19,42 @@ const LoginPage = () => {
 
   const router = useRouter();
 
+  const handleFacebookSignIn = async () => {
+    try {
+      // Use signIn function for Facebook authentication
+      const res = (await signIn("facebook")) as ResponseType;
+
+      if (res.error) {
+        setError("Invalid Credentials");
+        toast.error(error);
+        return;
+      }
+      //FIXME: redirect does not work
+      // Redirect to the home page after successful authentication
+      router.replace("/");
+    } catch (error) {
+      console.error("Facebook sign-in error:", error);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      // Use signIn function for Google authentication
+      const res = (await signIn("google")) as ResponseType;
+
+      if (res.error) {
+        setError("Invalid Credentials");
+        toast.error(error);
+        return;
+      }
+      //FIXME: redirect does not work
+      // Redirect to the home page after successful authentication
+      router.replace("/");
+    } catch (error) {
+      console.error("Google sign-in error:", error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Your form handling logic here
@@ -69,7 +105,10 @@ const LoginPage = () => {
             <div className="mt-5 mb-5 text-sm text-center">
               Or Sign in using
             </div>{" "}
-            <button className="flex gap-4 p-4 ring-2 ring-orange-100 rounded-md justify-center items-center">
+            <button
+              className="flex gap-4 p-4 ring-2 ring-orange-100 rounded-md justify-center items-center"
+              onClick={handleGoogleSignIn}
+            >
               <Image
                 src="/google.png"
                 alt=""
@@ -79,7 +118,10 @@ const LoginPage = () => {
               />
               <span>Sign in with Google</span>
             </button>
-            <button className="flex gap-4 p-4 ring-2 ring-blue-100 rounded-md justify-center items-center">
+            <button
+              className="flex gap-4 p-4 ring-2 ring-blue-100 rounded-md justify-center items-center"
+              onClick={handleFacebookSignIn}
+            >
               <Image
                 src="/facebook.png"
                 alt=""
