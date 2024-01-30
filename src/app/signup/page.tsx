@@ -45,8 +45,8 @@ const SignUpPage = () => {
       if (res.ok) {
         const form = e.target as HTMLFormElement; // Explicitly cast to HTMLFormElement;
         form.reset();
-        router.push("/");
         toast.success("Successfully signed up");
+        router.push("/");
       } else {
         console.log("User registration failed.");
       }
