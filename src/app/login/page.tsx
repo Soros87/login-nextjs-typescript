@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 // Assume ResponseType is the type you want to assign to res
 type ResponseType = {
@@ -32,6 +33,7 @@ const LoginPage = () => {
 
       if (res.error) {
         setError("Invalid Credentials");
+        toast.error(error);
         return;
       }
 

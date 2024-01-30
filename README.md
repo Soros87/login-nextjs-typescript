@@ -38,11 +38,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 Objective: Build a login page using NextJS and Typescript. Implement Google Facebook SSO login authentication.
 
 1. OAuth authentication
-2. Custom Credentials-based login (Email + Password):
+2. Custom Credentials-based login (Email + Password): - Cookie based authentication
 
 Database - MongoDB
 
-Dependencies
+Key Dependencies
 next-auth
 mongoose - for NoSQLDB
 bycrpytjs - for custom authentication
