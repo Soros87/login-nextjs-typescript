@@ -5,7 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
 import { connectMongoDB } from "@/lib/mongodb";
-import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
+import { NextApiHandler } from "next";
 import FacebookProvider from "next-auth/providers/facebook";
 
 interface Credentials {
@@ -55,7 +55,7 @@ const authOptions: NextAuthOptions = {
     }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_APP_ID!,
-      clientSecret: process.env.FACEBOOK_APP_SECRET!,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
     }),
   ],
   session: {
@@ -86,11 +86,6 @@ const authOptions: NextAuthOptions = {
   },
 };
 
-const handler: NextApiHandler = async (
-  req: NextApiRequest,
-  res: NextApiResponse
-) => {
-  await NextAuth(req, res, authOptions);
-};
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
