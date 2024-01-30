@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const SignUpPage = () => {
   const [firstName, setFirstName] = useState("");
@@ -45,6 +46,7 @@ const SignUpPage = () => {
         const form = e.target as HTMLFormElement; // Explicitly cast to HTMLFormElement;
         form.reset();
         router.push("/");
+        toast.success("Successfully signed up");
       } else {
         console.log("User registration failed.");
       }
