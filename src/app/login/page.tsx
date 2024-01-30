@@ -31,6 +31,7 @@ const LoginPage = () => {
       }
       //FIXME: redirect does not work
       // Redirect to the home page after successful authentication
+      toast.success("Successfully signed in");
       router.replace("/");
     } catch (error) {
       console.error("Facebook sign-in error:", error);
@@ -49,6 +50,7 @@ const LoginPage = () => {
       }
       //FIXME: redirect does not work
       // Redirect to the home page after successful authentication
+      toast.success("Successfully signed in");
       router.replace("/");
     } catch (error) {
       console.error("Google sign-in error:", error);
