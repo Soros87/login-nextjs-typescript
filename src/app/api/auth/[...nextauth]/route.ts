@@ -5,7 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
 import { connectMongoDB } from "@/lib/mongodb";
-import { NextApiHandler } from "next";
+import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import FacebookProvider from "next-auth/providers/facebook";
 
 interface Credentials {
@@ -86,6 +86,11 @@ const authOptions: NextAuthOptions = {
   },
 };
 
-const handler: NextApiHandler = NextAuth(authOptions);
+const handler: NextApiHandler = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => {
+  await NextAuth(req, res, authOptions);
+};
 
 export { handler as GET, handler as POST };
