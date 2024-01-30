@@ -74,7 +74,7 @@ const LoginPage = () => {
         toast.error(error);
         return;
       }
-
+      toast.success("Successfully signed in");
       router.replace("/");
     } catch (error) {
       console.log(error);
