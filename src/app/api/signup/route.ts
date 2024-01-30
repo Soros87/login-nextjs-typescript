@@ -2,16 +2,10 @@ import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/User";
 import { NextResponse } from "next/server";
 import { hashString } from "@/lib/utils";
+import { NextApiRequest, NextApiResponse } from "next";
 
-interface RequestBody {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-}
-
-export async function POST(req: { json: () => Promise<RequestBody> }) {
-  const { firstName, lastName, email, password } = await req.json();
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
+  const { firstName, lastName, email, password } = await req.body();
 
   //Validate fields
   if (!email || !password || !firstName || !lastName) {
